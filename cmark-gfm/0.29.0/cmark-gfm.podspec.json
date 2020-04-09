@@ -3,7 +3,10 @@
   "version": "0.29.0",
   "summary": "Extended version of the C reference implementation of CommonMark, cmark.",
   "homepage": "https://github.com/github/cmark-gfm",
-  "license": "MIT",
+  "license": {
+  	"type": "MIT",
+  	"file": "COPYING"
+  },
   "authors": {
     "John MacFarlane": "",
     "Vincent Marti": "",
@@ -16,16 +19,10 @@
     "git": "https://github.com/github/cmark-gfm.git",
     "tag": "0.29.0.gfm.0"
   },
+  "prepare_command": "mkdir build && cd build && cmake .. && make",
   "requires_arc": false,
-  "default_subspecs": ["standard", "extensions"],
-  "subspecs": [
-    {
-      "name": "standard",
-      "source_files": "src/*.{c,h}"
-    },
-    {
-      "name": "extensions",
-      "source_files": "extensions/*.{c,h}"
-    }
-  ]
+  "source_files": ["src/*.h", "extensions/*.h", "build/**/*.h"],
+  "public_header_files": ["src/cmark*.h", "extensions/cmark*.h"],
+  "private_header_files": "build/{src,extensions}/*.h",
+  "vendored_libraries": "build/{src,extensions}/*.a"
 }
