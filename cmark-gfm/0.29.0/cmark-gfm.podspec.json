@@ -19,10 +19,8 @@
     "git": "https://github.com/github/cmark-gfm.git",
     "tag": "0.29.0.gfm.0"
   },
-  "prepare_command": "mkdir build && cd build && cmake .. && make",
+  "prepare_command": "mkdir build && cd build && cmake -DCMARK_STATIC=ON -DCMARK_SHARED=OFF -DCMARK_TESTS=OFF .. && make",
   "requires_arc": false,
-  "source_files": ["src/*.h", "extensions/*.h", "build/**/*.h"],
-  "public_header_files": ["src/cmark*.h", "extensions/cmark*.h"],
-  "private_header_files": "build/{src,extensions}/*.h",
-  "vendored_libraries": "build/{src,extensions}/*.a"
+  "source_files": ["{src,extensions}/*.{c,h}", "build/{src,extensions}/*.h"],
+  "preserve_paths": "{src,extensions}/*.{re,in,inc}"
 }
